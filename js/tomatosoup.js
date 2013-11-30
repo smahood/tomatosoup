@@ -34,36 +34,10 @@ function countDown(intervalInMinutes){
 		var elapsedTimeInSeconds = Math.floor((new Date - start) / 1000);
 		var remainingTimeInSeconds = intervalInSeconds - elapsedTimeInSeconds;
 
-		console.log(elapsedTimeInSeconds);
-		console.log(remainingTimeInSeconds);
-		
-		var elapsedMinutesDisplay = prettyTimeString(Math.floor(elapsedTimeInSeconds / 60));
-		var elapsedSecondsDisplay = prettyTimeString(Math.floor(elapsedTimeInSeconds % 60));
-		var remainingMinutesDisplay = prettyTimeString(Math.floor(remainingTimeInSeconds / 60));
-		var remainingSecondsDisplay = prettyTimeString(Math.floor(remainingTimeInSeconds % 60));
-
 		var elapsedTimeString = elapsedMinutesDisplay + ":" + elapsedSecondsDisplay;
 
-
-		// var total_seconds = elapsedTimeInSeconds % 3600;
-		
-
-		// var seconds = Math.floor(total_seconds);
-		// remainingTimeInSeconds = intervalInSeconds - seconds;
-		// var minutes = Math.floor(total_seconds / 60);
-		// total_seconds = total_seconds % 60;
-
-		// var seconds = Math.floor(total_seconds);
-		// console.log(minutes);
-		// console.log(seconds);
-		// minutes = prettyTimeString(minutes);
-		// seconds = prettyTimeString(seconds);
-
-		// var timeRemainingString = 2;
-		// var currentTimeString = minutes + ":" + seconds;
-		
-		$('.tomatosoup-elapsed').text(elapsedMinutesDisplay + ":" + elapsedSecondsDisplay);
-		$('.tomatosoup-remaining').text(remainingMinutesDisplay + ":" + remainingSecondsDisplay);
+		$('.tomatosoup-elapsed').text(prettyTimeString(Math.floor(elapsedTimeInSeconds / 60)) + ":" + prettyTimeString(Math.floor(elapsedTimeInSeconds % 60)));
+		$('.tomatosoup-remaining').text(prettyTimeString(Math.floor(remainingTimeInSeconds / 60) + ":" +  prettyTimeString(Math.floor(remainingTimeInSeconds % 60));
 
 		}, 1000);
 }

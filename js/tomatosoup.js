@@ -1,10 +1,11 @@
 $(function(){
 	var tomatosoup = {};
-	tomatosoup.pomodoro={interval: 2, break:2};
+	tomatosoup.pomodoro={interval: 1, break:1};
 
 	console.log(tomatosoup);
-	testCountDown();
-	countDown(2);
+	
+	//testCountDown();
+	countDown(tomatosoup.pomodoro.interval);
 });
 
 function testCountDown(){
@@ -34,10 +35,20 @@ function countDown(intervalInMinutes){
 		var elapsedTimeInSeconds = Math.floor((new Date - start) / 1000);
 		var remainingTimeInSeconds = intervalInSeconds - elapsedTimeInSeconds;
 
-		var elapsedTimeString = elapsedMinutesDisplay + ":" + elapsedSecondsDisplay;
+		 $('.tomatosoup-elapsed').text(prettyTimeString(Math.floor(elapsedTimeInSeconds / 60)) + ":" + prettyTimeString(Math.floor(elapsedTimeInSeconds % 60)));
+		 $('.tomatosoup-remaining').text(prettyTimeString(Math.floor(remainingTimeInSeconds / 60)) + ":" +  prettyTimeString(Math.floor(remainingTimeInSeconds % 60)));
 
-		$('.tomatosoup-elapsed').text(prettyTimeString(Math.floor(elapsedTimeInSeconds / 60)) + ":" + prettyTimeString(Math.floor(elapsedTimeInSeconds % 60)));
-		$('.tomatosoup-remaining').text(prettyTimeString(Math.floor(remainingTimeInSeconds / 60) + ":" +  prettyTimeString(Math.floor(remainingTimeInSeconds % 60));
+
+		 if(remainingTimeInSeconds === 0){
+		 	clearInterval(pomodoroTimer);
+		 	$('body').animate({backgroundColor: "#9E1E1E"},500)
+				.animate({backgroundColor: "#FFFFFF"}, 500	)
+				.animate({backgroundColor: "#9E1E1E"},500)
+				.animate({backgroundColor: "#FFFFFF"},500);
+
+
+		 }
+
 
 		}, 1000);
 }
